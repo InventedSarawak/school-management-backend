@@ -28,6 +28,9 @@ const listSchools = asyncHandler(async (req, res) => {
     const { latitude, longitude } = req.query
     validateCoordinates(latitude, longitude)
     const result = await listSchoolsService(latitude, longitude)
+    if (!result || result.length === 0) {
+        new ApiResponse(200, [], 'No schools found')
+    }
     res.status(200).json(
         new ApiResponse(200, result, 'Schools fetched successfully')
     )
