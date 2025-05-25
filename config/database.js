@@ -15,7 +15,7 @@ const pool = mysql.createPool({
 const modelPath = path.resolve('models', 'school.model.sql')
 const createTableSQL = fs.readFileSync(modelPath, 'utf-8')
 
-async function initializeDatabase(maxRetries = 5, retryInterval = 2000) {
+async function initializeDatabase(maxRetries = 50, retryInterval = 4000) {
     let attempts = 0
 
     while (attempts < maxRetries) {
